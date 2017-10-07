@@ -1,17 +1,16 @@
-from flask import Flask, render_template
+from flask import Flask, request, render_template
+
 app = Flask(__name__)
 
-@app.route("/")
-def home():
-  return render_template('home.html')
-
-@app.route("/add-munroe.html/")
+@app.route("/", methods=['GET', "POST"])
 def addm():
-  return render_template('add-munroe.html')
+  return render_template('addmn.html')
 
-@app.route("/munroe-list.html/")
-def mlist():
-  return render_template('munroe-list.html')
+@app.route('/listmn.html', methods=['GET','POST'])
+def listmn():
+  return render_template('listmn.html', t1=request.form['t1'],
+  t2=request.form['t2'])
+
 
 if __name__ == "__main__":
   app.run(host='0.0.0.0')
